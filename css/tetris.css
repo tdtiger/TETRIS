@@ -1,0 +1,8 @@
+#game{
+    display: flex;
+    gap: 20px;
+}
+
+#f{
+    text-align: center;
+}
