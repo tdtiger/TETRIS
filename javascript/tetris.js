@@ -8,6 +8,7 @@ let field = [];
 
 /* size of a block (px) */
 const BLOCK_SIZE = 30;
+
 /* size of tetromino */
 const MINO_SIZE = 4;
 
@@ -113,7 +114,6 @@ mino = MINO_TYPES[mino_t];
 let nextmino;
 
 let HOLD_MINO_NUM;
-let NEXT_MINO_NUM = Math.floor(Math.random()*(MINO_TYPES.length-1)+1);
 
 /* set tetromino center of canvas */
 let START_X = FIELD_WIDTH/2 - MINO_SIZE/2;
@@ -142,7 +142,7 @@ let sline;
 setInterval(function, cycle(ms))
 -> function is repeated periodically
 */
-//setInterval(dropmino, DROP_SPEED);
+setInterval(dropmino, DROP_SPEED);
 
 /* initialize various things */
 function initialize(){
@@ -152,6 +152,7 @@ function initialize(){
     line_display.innerHTML = 0;
     DROP_SPEED = 500;
     over = false;
+    NEXT_MINO_NUM = Math.floor(Math.random()*(MINO_TYPES.length-1)+1);
     for(let y = 0; y < FIELD_HEIGHT; y++){
         /* dimention expansion */
         field[y] = [];
@@ -160,24 +161,6 @@ function initialize(){
         }
     }
 }
-
-/*
-arguments:
-fig     new figure
-x1, y1  drawing start coordinates
-x2, y2  drawing finish coordinates
-thick   line thickness
-color   line color
-
-function drawline(fig,x1,y1,x2,y2,thick,color) {
-    fig.beginPath();
-    fig.lineWidth = thick;
-    fig.strokeStyle = color;
-    fig.moveTo(x1,y1);
-    fig.lineTo(x2,y2);
-    fig.stroke();
-}
-*/
 
 function drawBlock(x, y, c){
     let xc = x * BLOCK_SIZE;
@@ -191,6 +174,34 @@ function drawBlock(x, y, c){
     context.strokeStyle = "black";
     /* draw border of block */
     context.strokeRect(xc, yc, BLOCK_SIZE, BLOCK_SIZE);
+}
+
+function drawnextBlock(x, y, c){
+    let xc = x * BLOCK_SIZE;
+    let yc = y * BLOCK_SIZE;
+
+    /* set block color  */
+    con_p.fillStyle = MINO_COLORS[c];
+    /* draw block <argument>=(x_coordinate, y_coordinate, width, height) */
+    con_p.fillRect(xc, yc, BLOCK_SIZE, BLOCK_SIZE);
+    /* set border color */
+    con_p.strokeStyle = "black";
+    /* draw border of block */
+    con_p.strokeRect(xc, yc, BLOCK_SIZE, BLOCK_SIZE);
+}
+
+function drawholdBlock(x, y, c){
+    let xc = x * BLOCK_SIZE;
+    let yc = y * BLOCK_SIZE;
+
+    /* set block color  */
+    con_h.fillStyle = MINO_COLORS[c];
+    /* draw block <argument>=(x_coordinate, y_coordinate, width, height) */
+    con_h.fillRect(xc, yc, BLOCK_SIZE, BLOCK_SIZE);
+    /* set border color */
+    con_h.strokeStyle = "black";
+    /* draw border of block */
+    con_h.strokeRect(xc, yc, BLOCK_SIZE, BLOCK_SIZE);
 }
 
 function drawfield(){
@@ -218,10 +229,6 @@ function drawmino(){
         return;
 }
 
-function drawnextmino(){
-
-}
-
 function generatemino(){
     NEXT_MINO_NUM = Math.floor(Math.random() * (MINO_TYPES.length-1) + 1);
     //mino = MINO_TYPES[NEXT_MINO_NUM];
@@ -243,7 +250,7 @@ function preview(){
     for(let y = 0; y < MINO_SIZE; y++){
         for(let x = 0; x < MINO_SIZE; x++){
             if(MINO_TYPES[NEXT_MINO_NUM][y][x]){
-                drawBlock(13+x, y+5, NEXT_MINO_NUM);
+                drawnextBlock(20 + x, 20 + y, NEXT_MINO_NUM);
             }
         }
     }
@@ -401,13 +408,24 @@ function holdmino(){
     }else{
         HOLD_MINO_NUM = mino_t;
     }
+
+    for(let y = 0; y < MINO_SIZE; y++){
+        for(let x = 0; x < MINO_SIZE; x++){
+            if(MINO_TYPES[HOLD_MINO_NUM][y][x]){
+                drawholdBlock(20 + x, 20 + y, HOLD_MINO_NUM);
+            }
+        }
+    }
+
+        if(over)
+            return;
+
 }
 
 
 /*--------------------main--------------------*/
 
 initialize();
-//drawline(pre, 20,10,20,30,5,"#ffffff")
 preview();
 drawfield();
 drawmino();
