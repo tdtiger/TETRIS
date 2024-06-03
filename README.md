@@ -1,6 +1,7 @@
 # TETRIS
 first practice javascript
-
+<h2>デモ</h2>
+https://yasudamasatosi.github.io/TETRIS/
 <h2>操作方法</h2>
 移動 => ←，↓，→
 <br>
