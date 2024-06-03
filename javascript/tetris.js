@@ -323,7 +323,7 @@ function checkLine(){
 }
 
 /* rotate a tetromino 90 degrres to the right */
-function rotate(){
+function rotateToRight(){
     let newmino = [];
 
     for(let y=0; y<MINO_SIZE; y++){
@@ -336,6 +336,22 @@ function rotate(){
 
     return newmino;
 }
+
+/* rotate a tetromino 90 degrres to the left */
+function rotateToLeft(){
+    let newmino = [];
+
+    for(let y=0; y<MINO_SIZE; y++){
+        /* dimention expansion */
+        newmino[y] = [];
+        for(let x = 0; x < MINO_SIZE; x++){
+            newmino[y][x] = mino[x][MINO_SIZE-y-1];
+        }
+    }
+
+    return newmino;
+}
+
 
 function dropmino(){
     if(over){
@@ -457,11 +473,17 @@ document.onkeydown = function(e){
             if(checkMove(0, 1))
                 mino_y++;
             break;
-        /* when the space key is pressed */
-        case " ":
-            let n_mino=rotate();
-            if(checkMove(0, 0, n_mino))
-                mino=n_mino;
+        /* when the x key is pressed */
+        case "x":
+            let r_mino=rotateToRight();
+            if(checkMove(0, 0, r_mino))
+                mino=r_mino;
+            break;
+        /* when the z key is pressed */
+        case "z":
+            let l_mino=rotateToLeft();
+            if(checkMove(0, 0, l_mino))
+                mino=l_mino;
             break;
         /* when the control key is pressed */
         case "Ctrl":
