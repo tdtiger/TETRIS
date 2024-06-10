@@ -128,12 +128,13 @@ let over = false;
 
 /* variables for information */
 let score;
+let line;
 const score_display = document.getElementById("score");
 const highscore = document.getElementById("highscore");
 let total_line = 0;
 const line_display = document.getElementById("line");
 /* to manage drop speed */
-let sline;
+let sline = 0;
 
 
 /*--------------------function--------------------*/
@@ -142,12 +143,13 @@ let sline;
 setInterval(function, cycle(ms))
 -> function is repeated periodically
 */
-setInterval(dropmino, DROP_SPEED);
+let sp = setInterval(dropmino, DROP_SPEED);
 
 /* initialize various things */
 function initialize(){
     score = 0;
     line = 0;
+    total_line = 0;
     score_display.innerHTML = 0;
     line_display.innerHTML = 0;
     DROP_SPEED = 500;
@@ -287,9 +289,15 @@ function checkMove(move_x, move_y, n_mino){
     return true;
 }
 
+function updateSpeed(){
+    clearInterval(sp);
+    sline-=10;
+    DROP_SPEED-=50;
+    sp = setInterval(dropmino, DROP_SPEED);
+}
+
 /* scan field by rasta scan */
 function checkLine(){
-    let line=0;
 
     /* check line */
     for(let y = 0; y < FIELD_HEIGHT; y++){
@@ -314,14 +322,14 @@ function checkLine(){
                 }
             }
 
-        /* accelerate every time 10lines are erased */
-            if(sline>=10){
-                sline-=10;
-                DROP_SPEED-=50;
+        /* accelerate every time 10 lines are erased */
+            if(sline >= 10){
+                updateSpeed();
             }
         }
     }
     score+=100*line;
+    line = 0;
 
     if(score > highscore.innerHTML){
         highscore.innerHTML = score;
