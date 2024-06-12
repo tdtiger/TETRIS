@@ -7,28 +7,59 @@
 </head>
 <body>
 
-<div id = "game">
-    <canvas id="next"></canvas>
-    <div>
-        <div id="info">
-            high score
-            <div id="highscore">
-            0
-            </div>
-            score
-            <div id="score">
-            0
-            </div>
-            line
-            <div id="line">
-            0
-            </div>
-        </div>
+<div id="game">
+    <div id = "l">
+        <canvas id="next"></canvas>
+        <br>
+        <table border="3" id="info">
+            <tr>
+                <th>score</th>
+            </tr>
+            <tr>
+                <td id="score" align="center">0</td>
+            </tr>
+            <tr>
+                <th>line</th>
+            </tr>
+            <tr>
+                <td id="line" align="center">0</td>
+            </tr>
+            <tr>
+                <th>highscore</th>
+            </tr>
+            <tr>
+                <td id="highscore" align="center">0</td>
+            </tr>
+        </table>
     </div>
-    <div id = "f">
-        <canvas id="field"></canvas>
-    </div>
+    <canvas id="field"></canvas>
+    <div id="l2">
     <canvas id="hold"></canvas>
+    <br>
+    <table border="3">
+        <tr>
+            <th>キー</th><th>挙動</th>
+        </tr>
+        <tr>
+            <td>← ↓ →</td><td>1マス移動</td>
+        </tr>
+        <tr>
+            <td align="center">↑</td><td>限界まで落下</td>
+        </tr>
+        <tr>
+            <td align="center">x</td><td>右回転</td>
+        </tr>
+        <tr>
+            <td align="center">z</td><td>左回転</td>
+        </tr>
+        <tr>
+            <td align="center">Space</td><td>ホールド</td>
+        </tr>
+        <tr>
+            <td align="center">Enter</td><td>初期化</td>
+        </tr>
+    </table>
+    </div>
 </div>
 
 <script type="text/javascript" src="javascript/tetris.js"></script>

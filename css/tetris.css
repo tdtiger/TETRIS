@@ -1,8 +1,19 @@
+body{
+    width: 700px;
+    margin: auto;
+    margin-top: 40px;
+}
+
 #game{
     display: flex;
     gap: 20px;
 }
 
-#f{
+#l,#l2{
+    display: flex;
+    flex-flow: column wrap;
+}
+
+#field{
     text-align: center;
 }

@@ -32,17 +32,21 @@ canvas.width = CANVAS_WIDTH;
 canvas.height = CANVAS_HEIGHT;
 canvas.style.border = "4px solid #555";
 
-pre.style.width = "150px";
-pre.style.height = "150px";
+pre.style.width = "170px";
+pre.style.height = "170px";
 pre.style.border = "3px solid #555";
-con_p.font = "10px serif";
-con_p.fillText("Next", 100, 12);
+con_p.textAlign = "start";
+con_p.textBaseline = "middle";
+con_p.font = "22px Roboto medium";
+con_p.fillText("Next", 100, 10);
 
-ho.style.width = "150px";
-ho.style.height = "150px";
+ho.style.width = "170px";
+ho.style.height = "170px";
 ho.style.border = "3px solid #555";
-con_h.font = "10px serif";
-con_h.fillText("Hold", 100, 12);
+con_h.textAlign = "start";
+con_h.textBaseline = "middle";
+con_h.font = "22px Roboto medium";
+con_h.fillText("Hold", 100, 10);
 
 const MINO_TYPES = [
                     [],
@@ -111,7 +115,6 @@ mino_t = Math.floor(Math.random()*(MINO_TYPES.length-1)+1);
 
 let mino;
 mino = MINO_TYPES[mino_t];
-let nextmino;
 
 let HOLD_MINO_NUM=0;
 
@@ -136,14 +139,16 @@ const line_display = document.getElementById("line");
 /* to manage drop speed */
 let sline = 0;
 
+let flag_h = 0;
 
 /*--------------------function--------------------*/
 
-/*
-setInterval(function, cycle(ms))
--> function is repeated periodically
-*/
+    /*
+    setInterval(function, cycle(ms))
+    -> function is repeated periodically
+    */
 let sp = setInterval(dropmino, DROP_SPEED);
+
 
 /* initialize various things */
 function initialize(){
@@ -154,7 +159,7 @@ function initialize(){
     line_display.innerHTML = 0;
     DROP_SPEED = 500;
     over = false;
-    NEXT_MINO_NUM = Math.floor(Math.random()*(MINO_TYPES.length-1)+1);
+    generatemino();
     HOLD_MINO_NUM = 0;
     for(let y = 0; y < FIELD_HEIGHT; y++){
         /* dimention expansion */
@@ -217,7 +222,7 @@ function drawmino(target){
         for(let y = 0; y < MINO_SIZE; y++){
             for(let x = 0; x < MINO_SIZE; x++){
                 if(NextMino[y][x]){
-                    drawBlock(1 + x, 1 + y, NEXT_MINO_NUM, target);
+                    drawBlock(2 + x, 1 + y, NEXT_MINO_NUM, target);
                 }
             }
         }
@@ -227,7 +232,7 @@ function drawmino(target){
         for(let y = 0; y < MINO_SIZE; y++){
             for(let x = 0; x < MINO_SIZE; x++){
                 if(HoldMino[y][x]){
-                    drawBlock(1 + x, 1 + y, HOLD_MINO_NUM, target);
+                    drawBlock(2 + x, 1 + y, HOLD_MINO_NUM, target);
                 }
             }
         }
@@ -434,10 +439,15 @@ function fixmino(){
             }
         }
     }
+
+    flag_h = 0;
 }
 
 function holdmino(){
-    if(HOLD_MINO_NUM != 0){
+    if (flag_h)
+        return;
+
+    if(HOLD_MINO_NUM){
         let keep = mino_t;
         setmino(HOLD_MINO_NUM);
         HOLD_MINO_NUM = keep;
@@ -445,9 +455,14 @@ function holdmino(){
         HOLD_MINO_NUM = mino_t;
         generatemino();
         setmino();
+        generatemino();
+        con_p.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+        con_p.fillStyle = "black";
+        con_p.fillText("Next", 100, 12);
+        preview();
     }
     con_h.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    con_p.fillStyle = "black";
+    con_h.fillStyle = "black";
     con_h.fillText("Hold", 100, 12);
     for(let y = 0; y < MINO_SIZE; y++){
         for(let x = 0; x < MINO_SIZE; x++){
@@ -457,6 +472,7 @@ function holdmino(){
         }
     }
 
+    flag_h = 1;
         if(over)
             return;
 }
