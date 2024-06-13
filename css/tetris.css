@@ -7,6 +7,8 @@ body{
 input{
     width: 100px;
     height: 100px;
+    padding: 1px;
+    font-size: 150%;
 }
 
 #game{
