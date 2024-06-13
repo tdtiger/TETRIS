@@ -62,6 +62,17 @@
     </div>
 </div>
 
+<br>
+<input type="button" value="←" onclick="if(checkMove(-1, 0))mino_x--;">
+<input type="button" value="↓" onclick="if(checkMove(0, 1))mino_y++;">
+<input type="button" value="→" onclick="if(checkMove(1, 0))mino_x++;">
+<input type="button" value="↑" onclick="fastdrop();">
+<input type="button" value="ホールド" onclick="holdmino();">
+<input type="button" value="左回転" onclick="let l_mino=rotateToLeft();if(checkMove(0, 0, l_mino))mino=l_mino;">
+<input type="button" value="右回転" onclick="let r_mino=rotateToRight();if(checkMove(0, 0, r_mino))mino=r_mino;">
+<input type="button" value="リセット" onclick="initialize();setmino();">
+
+
 <script type="text/javascript" src="javascript/tetris.js"></script>
 </body>
 </html>

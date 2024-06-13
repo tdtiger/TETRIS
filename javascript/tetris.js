@@ -32,16 +32,16 @@ canvas.width = CANVAS_WIDTH;
 canvas.height = CANVAS_HEIGHT;
 canvas.style.border = "4px solid #555";
 
-pre.style.width = "170px";
-pre.style.height = "170px";
+pre.style.width = "270px";
+pre.style.height = "150px";
 pre.style.border = "3px solid #555";
 con_p.textAlign = "start";
 con_p.textBaseline = "middle";
 con_p.font = "22px Roboto medium";
 con_p.fillText("Next", 100, 10);
 
-ho.style.width = "170px";
-ho.style.height = "170px";
+ho.style.width = "270px";
+ho.style.height = "150px";
 ho.style.border = "3px solid #555";
 con_h.textAlign = "start";
 con_h.textBaseline = "middle";
@@ -222,7 +222,7 @@ function drawmino(target){
         for(let y = 0; y < MINO_SIZE; y++){
             for(let x = 0; x < MINO_SIZE; x++){
                 if(NextMino[y][x]){
-                    drawBlock(2 + x, 1 + y, NEXT_MINO_NUM, target);
+                    drawBlock(3 + x, 1 + y, NEXT_MINO_NUM, target);
                 }
             }
         }
@@ -232,7 +232,7 @@ function drawmino(target){
         for(let y = 0; y < MINO_SIZE; y++){
             for(let x = 0; x < MINO_SIZE; x++){
                 if(HoldMino[y][x]){
-                    drawBlock(2 + x, 1 + y, HOLD_MINO_NUM, target);
+                    drawBlock(3 + x, 1 + y, HOLD_MINO_NUM, target);
                 }
             }
         }
