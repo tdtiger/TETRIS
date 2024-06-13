@@ -4,6 +4,11 @@ body{
     margin-top: 20px;
 }
 
+input{
+    width: 100px;
+    height: 100px;
+}
+
 #game{
     display: flex;
     gap: 20px;
