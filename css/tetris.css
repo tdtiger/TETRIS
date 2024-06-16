@@ -1,26 +1,31 @@
-body{
+html {
+    touch-action: manipulation;
+}
+
+body {
     width: 900px;
     margin: auto;
     margin-top: 20px;
 }
 
-input{
+input {
     width: 100px;
     height: 100px;
     padding: 1px;
     font-size: 150%;
 }
 
-#game{
+#game {
     display: flex;
     gap: 20px;
 }
 
-#l,#l2{
+#l,
+#l2 {
     display: flex;
     flex-flow: column wrap;
 }
 
-#field{
+#field {
     text-align: center;
 }
