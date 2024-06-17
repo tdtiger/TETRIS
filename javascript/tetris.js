@@ -30,7 +30,6 @@ let con_h = ho.getContext("2d");
 /* set field */
 canvas.width = CANVAS_WIDTH;
 canvas.height = CANVAS_HEIGHT;
-canvas.style.border = "4px solid #555";
 
 pre.style.width = "270px";
 pre.style.height = "150px";
