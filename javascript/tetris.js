@@ -31,9 +31,6 @@ let con_h = ho.getContext("2d");
 canvas.width = CANVAS_WIDTH;
 canvas.height = CANVAS_HEIGHT;
 
-pre.style.width = "270px";
-pre.style.height = "150px";
-pre.style.border = "3px solid #555";
 con_p.textAlign = "start";
 con_p.textBaseline = "middle";
 con_p.font = "22px Roboto medium";
