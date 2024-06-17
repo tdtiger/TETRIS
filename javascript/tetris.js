@@ -49,77 +49,77 @@ con_h.font = "22px Roboto medium";
 con_h.fillText("Hold", 100, 10);
 
 const MINO_TYPES = [
-                    [],
+    [],
     /* representing shape of tetromino by array (dim=2) */
-                    /* I mino index[1] */
-                    [
-                        [0, 0, 0, 0],
-                        [1, 1, 1, 1],
-                        [0, 0, 0, 0],
-                        [0, 0, 0, 0],
-                    ],
-                    /* L mino index[2] */
-                    [
-                        [0, 1, 0, 0],
-                        [0, 1, 0, 0],
-                        [0, 1, 1, 0],
-                        [0, 0, 0, 0],
-                    ],
-                    /* J mino index[3] */
-                    [
-                        [0, 0, 1, 0],
-                        [0, 0, 1, 0],
-                        [0, 1, 1, 0],
-                        [0, 0, 0, 0],
-                    ],
-                    /* T mino index[4] */
-                    [
-                        [0, 1, 0, 0],
-                        [0, 1, 1, 0],
-                        [0, 1, 0, 0],
-                        [0, 0, 0, 0],
-                    ],
-                    /* O mino index[5] */
-                    [
-                        [0, 0, 0, 0],
-                        [0, 1, 1, 0],
-                        [0, 1, 1, 0],
-                        [0, 0, 0, 0],
-                    ],
-                    /* Z mino index[6] */
-                    [
-                        [0, 0, 0, 0],
-                        [1, 1, 0, 0],
-                        [0, 1, 1, 0],
-                        [0, 0, 0, 0],
-                    ],
-                    /* S mino index[7] */
-                    [
-                        [0, 0, 0, 0],
-                        [0, 0, 1, 1],
-                        [0, 1, 1, 0],
-                        [0, 0, 0, 0],
-                    ]];
+    /* I mino index[1] */
+    [
+        [0, 0, 0, 0],
+        [1, 1, 1, 1],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+    ],
+    /* L mino index[2] */
+    [
+        [0, 1, 0, 0],
+        [0, 1, 0, 0],
+        [0, 1, 1, 0],
+        [0, 0, 0, 0],
+    ],
+    /* J mino index[3] */
+    [
+        [0, 0, 1, 0],
+        [0, 0, 1, 0],
+        [0, 1, 1, 0],
+        [0, 0, 0, 0],
+    ],
+    /* T mino index[4] */
+    [
+        [0, 1, 0, 0],
+        [0, 1, 1, 0],
+        [0, 1, 0, 0],
+        [0, 0, 0, 0],
+    ],
+    /* O mino index[5] */
+    [
+        [0, 0, 0, 0],
+        [0, 1, 1, 0],
+        [0, 1, 1, 0],
+        [0, 0, 0, 0],
+    ],
+    /* Z mino index[6] */
+    [
+        [0, 0, 0, 0],
+        [1, 1, 0, 0],
+        [0, 1, 1, 0],
+        [0, 0, 0, 0],
+    ],
+    /* S mino index[7] */
+    [
+        [0, 0, 0, 0],
+        [0, 0, 1, 1],
+        [0, 1, 1, 0],
+        [0, 0, 0, 0],
+    ]];
 
 /*
 index[0] is empty
 index[1]~index[7] are colors for tetromino
 index[8]~index[14] are colors for shadow
 */
-const MINO_COLORS = ["","#00FFFF","#FFA500","#0000FF","#9400D3","#FFFF00","#FF0000","#00FF00",
-                    "#E5FFFF", "#FFF5E5", "#E5E5FF", "#F7E5FF", "#FFFFE5", "#FFE5E5", "#E5FFE5"]
+const MINO_COLORS = ["", "#00FFFF", "#FFA500", "#0000FF", "#9400D3", "#FFFF00", "#FF0000", "#00FF00",
+    "#E5FFFF", "#FFF5E5", "#E5E5FF", "#F7E5FF", "#FFFFE5", "#FFE5E5", "#E5FFE5"]
 
 /* generate number 1 to 7*/
 let mino_t;
-mino_t = Math.floor(Math.random()*(MINO_TYPES.length-1)+1);
+mino_t = Math.floor(Math.random() * (MINO_TYPES.length - 1) + 1);
 
 let mino;
 mino = MINO_TYPES[mino_t];
 
-let HOLD_MINO_NUM=0;
+let HOLD_MINO_NUM = 0;
 
 /* set tetromino center of canvas */
-let START_X = FIELD_WIDTH/2 - MINO_SIZE/2;
+let START_X = FIELD_WIDTH / 2 - MINO_SIZE / 2;
 let START_Y = 0;
 
 /* coordinate of tetromino */
@@ -143,15 +143,15 @@ let flag_h = 0;
 
 /*--------------------function--------------------*/
 
-    /*
-    setInterval(function, cycle(ms))
-    -> function is repeated periodically
-    */
+/*
+setInterval(function, cycle(ms))
+-> function is repeated periodically
+*/
 let sp = setInterval(dropmino, DROP_SPEED);
 
 
 /* initialize various things */
-function initialize(){
+function initialize() {
     score = 0;
     line = 0;
     total_line = 0;
@@ -161,10 +161,10 @@ function initialize(){
     over = false;
     generatemino();
     HOLD_MINO_NUM = 0;
-    for(let y = 0; y < FIELD_HEIGHT; y++){
+    for (let y = 0; y < FIELD_HEIGHT; y++) {
         /* dimention expansion */
         field[y] = [];
-        for(let x = 0; x < FIELD_WIDTH; x++){
+        for (let x = 0; x < FIELD_WIDTH; x++) {
             field[y][x] = 0;
         }
     }
@@ -176,11 +176,11 @@ function initialize(){
     con_h.fillText("Hold", 100, 12);
 }
 
-function drawBlock(x, y, c, target){
+function drawBlock(x, y, c, target) {
     let xc = x * BLOCK_SIZE;
     let yc = y * BLOCK_SIZE;
 
-    if(target == "field")   {
+    if (target == "field") {
         /* set block color  */
         context.fillStyle = MINO_COLORS[c];
         /* draw block <argument>=(x_coordinate, y_coordinate, width, height) */
@@ -190,13 +190,13 @@ function drawBlock(x, y, c, target){
         /* draw border of block */
         context.strokeRect(xc, yc, BLOCK_SIZE, BLOCK_SIZE);
     }
-    else if(target == "next"){
+    else if (target == "next") {
         con_p.fillStyle = MINO_COLORS[c];
         con_p.fillRect(xc, yc, BLOCK_SIZE, BLOCK_SIZE);
         con_p.strokeStyle = "black";
         con_p.strokeRect(xc, yc, BLOCK_SIZE, BLOCK_SIZE);
     }
-    else if(target == "hold"){
+    else if (target == "hold") {
         con_h.fillStyle = MINO_COLORS[c];
         con_h.fillRect(xc, yc, BLOCK_SIZE, BLOCK_SIZE);
         con_h.strokeStyle = "black";
@@ -204,62 +204,68 @@ function drawBlock(x, y, c, target){
     }
 }
 
-function drawfield(){
+function drawfield() {
     context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
 
-    for(let y = 0; y < FIELD_HEIGHT; y++){
-        for(let x = 0; x < FIELD_WIDTH; x++){
-            if(field[y][x]){
+    for (let y = 0; y < FIELD_HEIGHT; y++) {
+        for (let x = 0; x < FIELD_WIDTH; x++) {
+            if (field[y][x]) {
                 drawBlock(x, y, field[y][x], "field");
             }
         }
     }
 }
 
-function drawmino(target){
-    if(target == "next"){
+function drawmino(target) {
+    if (target == "next") {
         let NextMino = MINO_TYPES[NEXT_MINO_NUM];
-        for(let y = 0; y < MINO_SIZE; y++){
-            for(let x = 0; x < MINO_SIZE; x++){
-                if(NextMino[y][x]){
+        for (let y = 0; y < MINO_SIZE; y++) {
+            for (let x = 0; x < MINO_SIZE; x++) {
+                if (NextMino[y][x]) {
                     drawBlock(3 + x, 1 + y, NEXT_MINO_NUM, target);
                 }
             }
         }
     }
-    else if(target == "hold"){
+    else if (target == "hold") {
         let HoldMino = MINO_TYPES[HOLD_MINO_NUM];
-        for(let y = 0; y < MINO_SIZE; y++){
-            for(let x = 0; x < MINO_SIZE; x++){
-                if(HoldMino[y][x]){
+        for (let y = 0; y < MINO_SIZE; y++) {
+            for (let x = 0; x < MINO_SIZE; x++) {
+                if (HoldMino[y][x]) {
                     drawBlock(3 + x, 1 + y, HOLD_MINO_NUM, target);
                 }
             }
         }
-    }else{
-        for(let y = 0; y < MINO_SIZE; y++){
-            for(let x = 0; x < MINO_SIZE; x++){
-                if(mino[y][x]){
+    } else {
+        for (let y = 0; y < MINO_SIZE; y++) {
+            for (let x = 0; x < MINO_SIZE; x++) {
+                if (mino[y][x]) {
                     drawBlock(mino_x + x, mino_y + y, mino_t, target);
                 }
             }
         }
     }
 
-    if(over)
+    if (over)
         return;
 }
 
+<<<<<<< HEAD
 function generatemino(){
     NEXT_MINO_NUM = Math.floor(Math.random() * (MINO_TYPES.length-1) + 1);
+=======
+function generatemino() {
+    NEXT_MINO_NUM = Math.floor(Math.random() * (MINO_TYPES.length - 1) + 1);
+    //mino = MINO_TYPES[NEXT_MINO_NUM];
+>>>>>>> e143d0b60ede05004d02378742f2e881c3d9e236
 }
 
 /* prepare next tetoromino */
-function setmino(mino_num){
-    if(mino_num == undefined){
-        mino_t = Math.floor(Math.random() * (MINO_TYPES.length-1) + 1);
+function setmino(mino_num) {
+    if (mino_num == undefined) {
+        mino_t = Math.floor(Math.random() * (MINO_TYPES.length - 1) + 1);
         mino = MINO_TYPES[mino_t];
-    }else{
+    } else {
         mino_t = mino_num;
         mino = MINO_TYPES[mino_t];
     }
@@ -267,24 +273,29 @@ function setmino(mino_num){
     mino_y = START_Y;
 }
 
-function preview(){
+function preview() {
     drawmino("next");
+<<<<<<< HEAD
     if(over)
+=======
+
+    if (over)
+>>>>>>> e143d0b60ede05004d02378742f2e881c3d9e236
         return;
 }
 
-function checkMove(move_x, move_y, n_mino){
+function checkMove(move_x, move_y, n_mino) {
     /* when third arugument is not passed, the variable 'n_mino' is current active tetoromino */
-    if(n_mino == undefined)
+    if (n_mino == undefined)
         n_mino = mino;
 
-    for(let y = 0; y < MINO_SIZE; y++){
-        for(let x = 0; x < MINO_SIZE; x++){
+    for (let y = 0; y < MINO_SIZE; y++) {
+        for (let x = 0; x < MINO_SIZE; x++) {
             let n_x = mino_x + move_x + x;
             let n_y = mino_y + move_y + y;
 
-            if(n_mino[y][x]){
-                if(n_y < 0 || n_x < 0 || n_y >= FIELD_HEIGHT || n_x >= FIELD_WIDTH || field[n_y][n_x])
+            if (n_mino[y][x]) {
+                if (n_y < 0 || n_x < 0 || n_y >= FIELD_HEIGHT || n_x >= FIELD_WIDTH || field[n_y][n_x])
                     return false;
             }
         }
@@ -292,48 +303,53 @@ function checkMove(move_x, move_y, n_mino){
     return true;
 }
 
-function updateSpeed(){
+function updateSpeed() {
     clearInterval(sp);
-    sline-=10;
-    DROP_SPEED-=50;
+    sline -= 10;
+    DROP_SPEED -= 50;
     sp = setInterval(dropmino, DROP_SPEED);
 }
 
 /* scan field by rasta scan */
+<<<<<<< HEAD
 function checkLine(){
+=======
+function checkLine() {
+
+>>>>>>> e143d0b60ede05004d02378742f2e881c3d9e236
     /* check line */
-    for(let y = 0; y < FIELD_HEIGHT; y++){
+    for (let y = 0; y < FIELD_HEIGHT; y++) {
         let flag = true;
         /* check row */
-        for(let x = 0; x < FIELD_WIDTH; x++){
+        for (let x = 0; x < FIELD_WIDTH; x++) {
             /* when empty block exists, no line is erased */
-            if(!field[y][x]){
+            if (!field[y][x]) {
                 flag = false;
                 break;
             }
         }
         /* when the line is filled */
-        if(flag){
+        if (flag) {
             line++;
             total_line++;
             sline++;
             /* copy from line[n-1] to line[n] */
-            for(let ny = y; ny > 0; ny--){
-                for(let nx = 0; nx < FIELD_WIDTH; nx++){
-                    field[ny][nx] = field[ny-1][nx];
+            for (let ny = y; ny > 0; ny--) {
+                for (let nx = 0; nx < FIELD_WIDTH; nx++) {
+                    field[ny][nx] = field[ny - 1][nx];
                 }
             }
 
-        /* accelerate every time 10 lines are erased */
-            if(sline >= 10){
+            /* accelerate every time 10 lines are erased */
+            if (sline >= 10) {
                 updateSpeed();
             }
         }
     }
-    score+=100*line;
+    score += 100 * line;
     line = 0;
 
-    if(score > highscore.innerHTML){
+    if (score > highscore.innerHTML) {
         highscore.innerHTML = score;
     }
 
@@ -342,14 +358,14 @@ function checkLine(){
 }
 
 /* rotate a tetromino 90 degrres to the right */
-function rotateToRight(){
+function rotateToRight() {
     let newmino = [];
 
-    for(let y=0; y<MINO_SIZE; y++){
+    for (let y = 0; y < MINO_SIZE; y++) {
         /* dimention expansion */
         newmino[y] = [];
-        for(let x = 0; x < MINO_SIZE; x++){
-            newmino[y][x] = mino[MINO_SIZE-x-1][y];
+        for (let x = 0; x < MINO_SIZE; x++) {
+            newmino[y][x] = mino[MINO_SIZE - x - 1][y];
         }
     }
 
@@ -357,33 +373,40 @@ function rotateToRight(){
 }
 
 /* rotate a tetromino 90 degrres to the left */
-function rotateToLeft(){
+function rotateToLeft() {
     let newmino = [];
 
-    for(let y=0; y<MINO_SIZE; y++){
+    for (let y = 0; y < MINO_SIZE; y++) {
         /* dimention expansion */
         newmino[y] = [];
-        for(let x = 0; x < MINO_SIZE; x++){
-            newmino[y][x] = mino[x][MINO_SIZE-y-1];
+        for (let x = 0; x < MINO_SIZE; x++) {
+            newmino[y][x] = mino[x][MINO_SIZE - y - 1];
         }
     }
 
     return newmino;
 }
 
+<<<<<<< HEAD
 function dropmino(){
     if(over){
         if(!window.alert("GAME OVER")){
+=======
+
+function dropmino() {
+    if (over) {
+        if (!window.alert("GAME OVER")) {
+>>>>>>> e143d0b60ede05004d02378742f2e881c3d9e236
             over = false;
             initialize();
         }
         return;
     }
 
-    if(checkMove(0, 1))
+    if (checkMove(0, 1))
         mino_y++;
-    else{
-        setTimeout(fixmino(),1000);
+    else {
+        setTimeout(fixmino(), 1000);
         checkLine();
         setmino(NEXT_MINO_NUM);
         con_p.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -392,7 +415,7 @@ function dropmino(){
         generatemino();
         preview();
 
-        if(!checkMove(0,0))
+        if (!checkMove(0, 0))
             over = true;
     }
     drawfield();
@@ -400,37 +423,37 @@ function dropmino(){
     drawshadow("field");
 }
 
-function drawshadow(target){
+function drawshadow(target) {
     let limit = 0;
-    while(checkMove(0,limit + 1)){
+    while (checkMove(0, limit + 1)) {
         limit++;
     }
 
-    if(limit == 0){
+    if (limit == 0) {
         return;
     }
 
-    for(let y = 0; y < MINO_SIZE; y++){
-        for(let x = 0; x < MINO_SIZE; x++){
-            if(mino[y][x]){
+    for (let y = 0; y < MINO_SIZE; y++) {
+        for (let x = 0; x < MINO_SIZE; x++) {
+            if (mino[y][x]) {
                 drawBlock(mino_x + x, mino_y + y + limit, mino_t + 7, target);
             }
         }
     }
 }
 
-function fastdrop(){
+function fastdrop() {
     let limit = 0;
-    while(checkMove(0,limit + 1)){
+    while (checkMove(0, limit + 1)) {
         limit++;
     }
     mino_y += limit;
 }
 
-function fixmino(){
-    for(let y = 0; y < MINO_SIZE; y++){
-        for(let x = 0; x < MINO_SIZE; x++){
-            if(mino[y][x]){
+function fixmino() {
+    for (let y = 0; y < MINO_SIZE; y++) {
+        for (let x = 0; x < MINO_SIZE; x++) {
+            if (mino[y][x]) {
                 field[y + mino_y][x + mino_x] = mino_t;
             }
         }
@@ -439,15 +462,15 @@ function fixmino(){
     flag_h = 0;
 }
 
-function holdmino(){
+function holdmino() {
     if (flag_h)
         return;
 
-    if(HOLD_MINO_NUM){
+    if (HOLD_MINO_NUM) {
         let keep = mino_t;
         setmino(HOLD_MINO_NUM);
         HOLD_MINO_NUM = keep;
-    }else{
+    } else {
         HOLD_MINO_NUM = mino_t;
         generatemino();
         setmino();
@@ -460,17 +483,17 @@ function holdmino(){
     con_h.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     con_h.fillStyle = "black";
     con_h.fillText("Hold", 100, 12);
-    for(let y = 0; y < MINO_SIZE; y++){
-        for(let x = 0; x < MINO_SIZE; x++){
-            if(MINO_TYPES[HOLD_MINO_NUM][y][x]){
+    for (let y = 0; y < MINO_SIZE; y++) {
+        for (let x = 0; x < MINO_SIZE; x++) {
+            if (MINO_TYPES[HOLD_MINO_NUM][y][x]) {
                 drawBlock(1 + x, 1 + y, HOLD_MINO_NUM, "hold");
             }
         }
     }
 
     flag_h = 1;
-        if(over)
-            return;
+    if (over)
+        return;
 }
 
 
@@ -487,11 +510,11 @@ preview();
 operate tetromino
 when a key is pressed, the message stored in the variable 'e'
 */
-document.onkeydown = function(e){
-    switch (e.key){
+document.onkeydown = function (e) {
+    switch (e.key) {
         /* when the leftarrow key is pressed */
         case "ArrowLeft":
-            if(checkMove(-1, 0))
+            if (checkMove(-1, 0))
                 mino_x--;
             break;
         /* when the uparrow key is pressed */
@@ -500,25 +523,25 @@ document.onkeydown = function(e){
             break;
         /* when the rightarrow key is pressed */
         case "ArrowRight":
-            if(checkMove(1, 0))
+            if (checkMove(1, 0))
                 mino_x++;
             break;
         /* when the downarrow key is pressed */
         case "ArrowDown":
-            if(checkMove(0, 1))
+            if (checkMove(0, 1))
                 mino_y++;
             break;
         /* when the x key is pressed */
         case "x":
-            let r_mino=rotateToRight();
-            if(checkMove(0, 0, r_mino))
-                mino=r_mino;
+            let r_mino = rotateToRight();
+            if (checkMove(0, 0, r_mino))
+                mino = r_mino;
             break;
         /* when the z key is pressed */
         case "z":
-            let l_mino=rotateToLeft();
-            if(checkMove(0, 0, l_mino))
-                mino=l_mino;
+            let l_mino = rotateToLeft();
+            if (checkMove(0, 0, l_mino))
+                mino = l_mino;
             break;
         /* when the Space key is pressed */
         case " ":
@@ -530,7 +553,7 @@ document.onkeydown = function(e){
             setmino();
             break;
     }
-    if(over)
+    if (over)
         return;
 
     drawfield();

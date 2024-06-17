@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>TETRIS</title>
-<meta charset="utf-8">
-<link rel = "stylesheet" href ="css/tetris.css">
+    <title>TETRIS</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/tetris.css">
 </head>
+
 <body>
 
+<<<<<<< HEAD
 <div id="game">
     <div id = "l">
         <canvas id="next"></canvas>
@@ -71,8 +74,82 @@
 <input type="button" value="左回転" onclick="let l_mino=rotateToLeft();if(checkMove(0, 0, l_mino))mino=l_mino;">
 <input type="button" value="右回転" onclick="let r_mino=rotateToRight();if(checkMove(0, 0, r_mino))mino=r_mino;">
 <input type="button" value="リセット" onclick="initialize();setmino();">
+=======
+    <div id="game">
+        <div id="l">
+            <canvas id="next"></canvas>
+            <br>
+            <table border="3" id="info">
+                <tr>
+                    <th>score</th>
+                </tr>
+                <tr>
+                    <td id="score" align="center">0</td>
+                </tr>
+                <tr>
+                    <th>line</th>
+                </tr>
+                <tr>
+                    <td id="line" align="center">0</td>
+                </tr>
+                <tr>
+                    <th>highscore</th>
+                </tr>
+                <tr>
+                    <td id="highscore" align="center">0</td>
+                </tr>
+            </table>
+        </div>
+        <canvas id="field"></canvas>
+        <div id="l2">
+            <canvas id="hold"></canvas>
+            <br>
+            <table border="3">
+                <tr>
+                    <th>キー</th>
+                    <th>挙動</th>
+                </tr>
+                <tr>
+                    <td>← ↓ →</td>
+                    <td>1マス移動</td>
+                </tr>
+                <tr>
+                    <td>↑</td>
+                    <td>限界まで落下</td>
+                </tr>
+                <tr>
+                    <td>x</td>
+                    <td>右回転</td>
+                </tr>
+                <tr>
+                    <td>z</td>
+                    <td>左回転</td>
+                </tr>
+                <tr>
+                    <td>Space</td>
+                    <td>ホールド</td>
+                </tr>
+                <tr>
+                    <td>Enter</td>
+                    <td>初期化</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <br>
+    <input type="button" value="←" onclick="if(checkMove(-1, 0))mino_x--;">
+    <input type="button" value="↓" onclick="if(checkMove(0, 1))mino_y++;">
+    <input type="button" value="→" onclick="if(checkMove(1, 0))mino_x++;">
+    <input type="button" value="↑" onclick="fastdrop();">
+    <input type="button" value="ホールド" onclick="holdmino();">
+    <input type="button" value="左回転" onclick="let l_mino=rotateToLeft();if(checkMove(0, 0, l_mino))mino=l_mino;">
+    <input type="button" value="右回転" onclick="let r_mino=rotateToRight();if(checkMove(0, 0, r_mino))mino=r_mino;">
+    <input type="button" value="リセット" onclick="initialize();setmino();">
+>>>>>>> e143d0b60ede05004d02378742f2e881c3d9e236
 
 
-<script type="text/javascript" src="javascript/tetris.js"></script>
+    <script type="text/javascript" src="javascript/tetris.js"></script>
 </body>
+
 </html>
