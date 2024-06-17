@@ -250,14 +250,9 @@ function drawmino(target) {
         return;
 }
 
-<<<<<<< HEAD
-function generatemino(){
-    NEXT_MINO_NUM = Math.floor(Math.random() * (MINO_TYPES.length-1) + 1);
-=======
 function generatemino() {
     NEXT_MINO_NUM = Math.floor(Math.random() * (MINO_TYPES.length - 1) + 1);
     //mino = MINO_TYPES[NEXT_MINO_NUM];
->>>>>>> e143d0b60ede05004d02378742f2e881c3d9e236
 }
 
 /* prepare next tetoromino */
@@ -275,12 +270,8 @@ function setmino(mino_num) {
 
 function preview() {
     drawmino("next");
-<<<<<<< HEAD
-    if(over)
-=======
 
     if (over)
->>>>>>> e143d0b60ede05004d02378742f2e881c3d9e236
         return;
 }
 
@@ -311,12 +302,8 @@ function updateSpeed() {
 }
 
 /* scan field by rasta scan */
-<<<<<<< HEAD
-function checkLine(){
-=======
 function checkLine() {
 
->>>>>>> e143d0b60ede05004d02378742f2e881c3d9e236
     /* check line */
     for (let y = 0; y < FIELD_HEIGHT; y++) {
         let flag = true;
@@ -387,16 +374,10 @@ function rotateToLeft() {
     return newmino;
 }
 
-<<<<<<< HEAD
-function dropmino(){
-    if(over){
-        if(!window.alert("GAME OVER")){
-=======
 
 function dropmino() {
     if (over) {
         if (!window.alert("GAME OVER")) {
->>>>>>> e143d0b60ede05004d02378742f2e881c3d9e236
             over = false;
             initialize();
         }
