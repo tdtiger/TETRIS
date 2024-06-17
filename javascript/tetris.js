@@ -252,7 +252,6 @@ function drawmino(target){
 
 function generatemino(){
     NEXT_MINO_NUM = Math.floor(Math.random() * (MINO_TYPES.length-1) + 1);
-    //mino = MINO_TYPES[NEXT_MINO_NUM];
 }
 
 /* prepare next tetoromino */
@@ -270,7 +269,6 @@ function setmino(mino_num){
 
 function preview(){
     drawmino("next");
-
     if(over)
         return;
 }
@@ -303,7 +301,6 @@ function updateSpeed(){
 
 /* scan field by rasta scan */
 function checkLine(){
-
     /* check line */
     for(let y = 0; y < FIELD_HEIGHT; y++){
         let flag = true;
@@ -373,7 +370,6 @@ function rotateToLeft(){
 
     return newmino;
 }
-
 
 function dropmino(){
     if(over){
