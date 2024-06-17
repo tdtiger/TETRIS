@@ -26,6 +26,12 @@ input {
     flex-flow: column wrap;
 }
 
+
+#l2 > table > tbody  tr > td:nth-child(1) /*操作説明の"キー"欄のレイアウト*/
+{
+    text-align:center;
+}
+
 #field {
     text-align: center;
 }
