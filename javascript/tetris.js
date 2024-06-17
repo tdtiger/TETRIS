@@ -36,9 +36,6 @@ con_p.textBaseline = "middle";
 con_p.font = "22px Roboto medium";
 con_p.fillText("Next", 100, 10);
 
-ho.style.width = "270px";
-ho.style.height = "150px";
-ho.style.border = "3px solid #555";
 con_h.textAlign = "start";
 con_h.textBaseline = "middle";
 con_h.font = "22px Roboto medium";
