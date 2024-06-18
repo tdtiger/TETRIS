@@ -125,6 +125,7 @@ let over = false;
 /* variables for information */
 let score;
 let line;
+let REN = 0;
 const score_display = document.getElementById("score");
 const highscore = document.getElementById("highscore");
 let total_line = 0;
@@ -147,6 +148,7 @@ let sp = setInterval(dropmino, DROP_SPEED);
 function initialize() {
     score = 0;
     line = 0;
+    REN = 0;
     total_line = 0;
     score_display.innerHTML = 0;
     line_display.innerHTML = 0;
@@ -294,6 +296,23 @@ function updateSpeed() {
     sp = setInterval(dropmino, DROP_SPEED);
 }
 
+function calculateScore(sc, li) {
+    if (li == 1)
+        sc += 100;
+    else if (li == 2)
+        sc += 300;
+    else if (li == 3)
+        sc += 500;
+    else if (li == 4)
+        sc += 800;
+    
+    if (REN * 50 <= 1000)
+        sc += REN * 50;
+    else
+        sc += 1000;
+
+    return sc;
+}
 /* scan field by rasta scan */
 function checkLine() {
 
@@ -326,7 +345,14 @@ function checkLine() {
             }
         }
     }
-    score += 100 * line;
+
+    if (line)
+        REN += 1;
+    else
+        REN = 0;
+
+    score = calculateScore(score, line);
+    //score += 100 * line;
     line = 0;
 
     if (score > highscore.innerHTML) {
@@ -377,9 +403,11 @@ function dropmino() {
         return;
     }
 
-    if (checkMove(0, 1))
+    if (checkMove(0, 1)) {
         mino_y++;
-    else {
+        score+=1;
+        score_display.innerHTML = score;
+    } else {
         setTimeout(fixmino(), 1000);
         checkLine();
         setmino(NEXT_MINO_NUM);
@@ -422,6 +450,8 @@ function fastdrop() {
         limit++;
     }
     mino_y += limit;
+    score += limit * 2;
+    score_display.innerHTML = score;
 }
 
 function fixmino() {
