@@ -30,19 +30,12 @@ let con_h = ho.getContext("2d");
 /* set field */
 canvas.width = CANVAS_WIDTH;
 canvas.height = CANVAS_HEIGHT;
-canvas.style.border = "4px solid #555";
 
-pre.style.width = "270px";
-pre.style.height = "150px";
-pre.style.border = "3px solid #555";
 con_p.textAlign = "start";
 con_p.textBaseline = "middle";
 con_p.font = "22px Roboto medium";
 con_p.fillText("Next", 100, 10);
 
-ho.style.width = "270px";
-ho.style.height = "150px";
-ho.style.border = "3px solid #555";
 con_h.textAlign = "start";
 con_h.textBaseline = "middle";
 con_h.font = "22px Roboto medium";
