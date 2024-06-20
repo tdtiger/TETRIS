@@ -106,6 +106,7 @@ const MINO_COLORS = ["", "#00FFFF", "#FFA500", "#0000FF", "#9400D3", "#FFFF00", 
 let mino_t;
 mino_t = Math.floor(Math.random() * (MINO_TYPES.length - 1) + 1);
 
+/* for active mino */
 let mino;
 mino = MINO_TYPES[mino_t];
 
@@ -122,6 +123,9 @@ let mino_y = START_Y;
 /* gameover flag */
 let over = false;
 
+/* hold flag */
+let flag_h = false;
+
 /* variables for information */
 let score;
 let line;
@@ -130,10 +134,10 @@ const score_display = document.getElementById("score");
 const highscore = document.getElementById("highscore");
 let total_line = 0;
 const line_display = document.getElementById("line");
+
 /* to manage drop speed */
 let sline = 0;
 
-let flag_h = 0;
 
 /*--------------------function--------------------*/
 
@@ -154,6 +158,7 @@ function initialize() {
     line_display.innerHTML = 0;
     DROP_SPEED = 500;
     over = false;
+    flag_h = false;
     generatemino();
     HOLD_MINO_NUM = 0;
     for (let y = 0; y < FIELD_HEIGHT; y++) {
@@ -247,7 +252,6 @@ function drawmino(target) {
 
 function generatemino() {
     NEXT_MINO_NUM = Math.floor(Math.random() * (MINO_TYPES.length - 1) + 1);
-    //mino = MINO_TYPES[NEXT_MINO_NUM];
 }
 
 /* prepare next tetoromino */
@@ -305,7 +309,7 @@ function calculateScore(sc, li) {
         sc += 500;
     else if (li == 4)
         sc += 800;
-    
+
     if (REN * 50 <= 1000)
         sc += REN * 50;
     else
@@ -313,6 +317,7 @@ function calculateScore(sc, li) {
 
     return sc;
 }
+
 /* scan field by rasta scan */
 function checkLine() {
 
@@ -352,7 +357,6 @@ function checkLine() {
         REN = 0;
 
     score = calculateScore(score, line);
-    //score += 100 * line;
     line = 0;
 
     if (score > highscore.innerHTML) {
@@ -463,7 +467,7 @@ function fixmino() {
         }
     }
 
-    flag_h = 0;
+    flag_h = false;
 }
 
 function holdmino() {
@@ -476,14 +480,14 @@ function holdmino() {
         HOLD_MINO_NUM = keep;
     } else {
         HOLD_MINO_NUM = mino_t;
-        generatemino();
-        setmino();
+        setmino(NEXT_MINO_NUM);
         generatemino();
         con_p.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
         con_p.fillStyle = "black";
         con_p.fillText("Next", 100, 12);
         preview();
     }
+
     con_h.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     con_h.fillStyle = "black";
     con_h.fillText("Hold", 100, 12);
@@ -495,7 +499,7 @@ function holdmino() {
         }
     }
 
-    flag_h = 1;
+    flag_h = true;
     if (over)
         return;
 }
