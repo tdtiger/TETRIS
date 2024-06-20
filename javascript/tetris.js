@@ -424,6 +424,7 @@ function dropmino() {
         if (!checkMove(0, 0))
             over = true;
     }
+
     drawfield();
     drawmino("field");
     drawshadow("field");
