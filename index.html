@@ -4,7 +4,10 @@
 <head>
     <title>TETRIS</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="css/tetris.css">
+    <!--スマホ用(画面幅899pxまで)-->
+    <link rel="stylesheet" href="css/tetris-mo.css" type="text/css" media="screen and (max-width: 899px)"> 
+    <!--PC用(画面幅900px以上)-->
+    <link rel="stylesheet" href="css/tetris.css" type="text/css" media="screen and (min-width: 900px)">
 </head>
 
 <body>
@@ -74,14 +77,14 @@
     <br>
 
     <div id="buttons">
-    <img src="images/leftarrow.png" onclick="if(checkMove(-1, 0))mino_x--;">
-    <img src="images/downarrow.png" onclick="if(checkMove(0, 1))mino_y++;">
-    <img src="images/rightarrow.png" onclick="if(checkMove(1, 0))mino_x++;">
-    <img src="images/rotateleft.png" onclick="let l_mino=rotateToLeft();if(checkMove(0, 0, l_mino))mino=l_mino;">
-    <img src="images/rotateright.png" onclick="let r_mino=rotateToRight();if(checkMove(0, 0, r_mino))mino=r_mino">
-    <img src="images/fastdrop.png" onclick="fastdrop();">
-    <img src="images/hold.png" onclick="holdmino();">
-    <img src="images/reset.png" onclick="initialize();setmino();">
+        <img src="images/leftarrow.png" onclick="if(checkMove(-1, 0))mino_x--;">
+        <img src="images/downarrow.png" onclick="if(checkMove(0, 1))mino_y++;">
+        <img src="images/rightarrow.png" onclick="if(checkMove(1, 0))mino_x++;">
+        <img src="images/rotateleft.png" onclick="let l_mino=rotateToLeft();if(checkMove(0, 0, l_mino))mino=l_mino;">
+        <img src="images/rotateright.png" onclick="let r_mino=rotateToRight();if(checkMove(0, 0, r_mino))mino=r_mino">
+        <img src="images/fastdrop.png" onclick="fastdrop();">
+        <img src="images/hold.png" onclick="holdmino();">
+        <img src="images/reset.png" onclick="initialize();setmino();">
     </div>
     <!--
     <input type="button" value="←" onclick="if(checkMove(-1, 0))mino_x--;">
