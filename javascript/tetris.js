@@ -250,6 +250,25 @@ function drawmino(target) {
         return;
 }
 
+function drawshadow(target) {
+    let limit = 0;
+    while (checkMove(0, limit + 1)) {
+        limit++;
+    }
+
+    if (limit == 0) {
+        return;
+    }
+
+    for (let y = 0; y < MINO_SIZE; y++) {
+        for (let x = 0; x < MINO_SIZE; x++) {
+            if (mino[y][x]) {
+                drawBlock(mino_x + x, mino_y + y + limit, mino_t + 7, target);
+            }
+        }
+    }
+}
+
 function generatemino() {
     NEXT_MINO_NUM = Math.floor(Math.random() * (MINO_TYPES.length - 1) + 1);
 }
@@ -291,31 +310,6 @@ function checkMove(move_x, move_y, n_mino) {
         }
     }
     return true;
-}
-
-function updateSpeed() {
-    clearInterval(sp);
-    sline -= 10;
-    DROP_SPEED -= 50;
-    sp = setInterval(dropmino, DROP_SPEED);
-}
-
-function calculateScore(sc, li) {
-    if (li == 1)
-        sc += 100;
-    else if (li == 2)
-        sc += 300;
-    else if (li == 3)
-        sc += 500;
-    else if (li == 4)
-        sc += 800;
-
-    if (REN * 50 <= 1000)
-        sc += REN * 50;
-    else
-        sc += 1000;
-
-    return sc;
 }
 
 /* scan field by rasta scan */
@@ -365,6 +359,31 @@ function checkLine() {
 
     score_display.innerHTML = score;
     line_display.innerHTML = total_line;
+}
+
+function updateSpeed() {
+    clearInterval(sp);
+    sline -= 10;
+    DROP_SPEED -= 50;
+    sp = setInterval(dropmino, DROP_SPEED);
+}
+
+function calculateScore(sc, li) {
+    if (li == 1)
+        sc += 100;
+    else if (li == 2)
+        sc += 300;
+    else if (li == 3)
+        sc += 500;
+    else if (li == 4)
+        sc += 800;
+
+    if (REN * 50 <= 1000)
+        sc += REN * 50;
+    else
+        sc += 1000;
+
+    return sc;
 }
 
 /* rotate a tetromino 90 degrres to the right */
@@ -428,25 +447,6 @@ function dropmino() {
     drawfield();
     drawmino("field");
     drawshadow("field");
-}
-
-function drawshadow(target) {
-    let limit = 0;
-    while (checkMove(0, limit + 1)) {
-        limit++;
-    }
-
-    if (limit == 0) {
-        return;
-    }
-
-    for (let y = 0; y < MINO_SIZE; y++) {
-        for (let x = 0; x < MINO_SIZE; x++) {
-            if (mino[y][x]) {
-                drawBlock(mino_x + x, mino_y + y + limit, mino_t + 7, target);
-            }
-        }
-    }
 }
 
 function fastdrop() {
