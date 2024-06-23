@@ -26,10 +26,7 @@ img {
 }
 
 #buttons {
-    justify-content: space-between;
-    display: flex;
-    align-items: flex-end;
-    gap: 0.5px;
+    display: none;
 }
 
 #l,
@@ -50,7 +47,8 @@ table#info {
 }
 
 canvas#field {
-    border: 4px solid #555
+    border: 4px solid #555;
+    height: 550px;
 }
 
 /*操作説明の"キー"欄のレイアウト*/
