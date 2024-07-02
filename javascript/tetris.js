@@ -126,6 +126,8 @@ let over = false;
 /* hold flag */
 let flag_h = false;
 
+let pause = false;
+
 /* variables for information */
 let score;
 let line;
@@ -505,6 +507,15 @@ function holdmino() {
         return;
 }
 
+function p(){
+    if (pause){
+        sp = setInterval(dropmino(), DROP_SPEED);
+        pause = false;
+    } else {
+        clearInterval(sp);
+        pause = true;
+    }
+}
 
 /*--------------------main--------------------*/
 
@@ -520,6 +531,9 @@ operate tetromino
 when a key is pressed, the message stored in the variable 'e'
 */
 document.onkeydown = function (e) {
+    if (pause && e.key != "s")
+        return;
+
     switch (e.key) {
         /* when the leftarrow key is pressed */
         case "ArrowLeft":
@@ -560,6 +574,9 @@ document.onkeydown = function (e) {
         case "Enter":
             initialize();
             setmino();
+            break;
+        case "s":
+            p();
             break;
     }
     if (over)
