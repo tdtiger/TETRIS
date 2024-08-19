@@ -1,7 +1,7 @@
 # TETRIS
 first practice javascript
 <h2>デモ</h2>
-https://yasudamasatosi.github.io/TETRIS/
+https://tdtiger.github.io/TETRIS/
 
 <h2>参考</h2>
 https://www.youtube.com/playlist?list=PLa3BDwShqOrThKoaWauNo8EKZda4pat7Z
