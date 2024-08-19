@@ -67,6 +67,14 @@
                     <td>Enter</td>
                     <td>初期化</td>
                 </tr>
+                <tr>
+                    <td>m</td>
+                    <td>BGM再生/停止</td>
+                </tr>
+                <tr>
+                    <td>p</td>
+                    <td>一時停止(再開不可能)</td>
+                </tr>
             </table>
         </div>
     </div>
@@ -93,7 +101,7 @@
     <input type="button" value="右回転" onclick="let r_mino=rotateToRight();if(checkMove(0, 0, r_mino))mino=r_mino;">
     <input type="button" value="リセット" onclick="initialize();setmino();">
     -->
-
+    <audio src="music/maou_bgm_8bit24.mp3" id="music"></audio>
     <script type="text/javascript" src="javascript/tetris.js"></script>
 </body>
 

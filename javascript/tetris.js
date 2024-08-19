@@ -126,7 +126,7 @@ let over = false;
 /* hold flag */
 let flag_h = false;
 
-let pause = false;
+let isPause = false;
 
 /* variables for information */
 let score;
@@ -140,6 +140,8 @@ const line_display = document.getElementById("line");
 /* to manage drop speed */
 let sline = 0;
 
+const music = document.querySelector("#music");
+let flag_m = false;
 
 /*--------------------function--------------------*/
 
@@ -423,6 +425,7 @@ function dropmino() {
     if (over) {
         if (!window.alert("GAME OVER")) {
             over = false;
+            music.pause();
             initialize();
         }
         return;
@@ -507,13 +510,25 @@ function holdmino() {
         return;
 }
 
-function p(){
-    if (pause){
+function pause(){
+    if (isPause){
         sp = setInterval(dropmino(), DROP_SPEED);
-        pause = false;
+        isPause = false;
+        music.play();
     } else {
         clearInterval(sp);
-        pause = true;
+        isPause = true;
+        music.pause();
+    }
+}
+
+function managemusic(){
+    if(!flag_m){
+        music.play();
+        flag_m = true;
+    } else {
+        music.pause();
+        flag_m = false;
     }
 }
 
@@ -531,7 +546,7 @@ operate tetromino
 when a key is pressed, the message stored in the variable 'e'
 */
 document.onkeydown = function (e) {
-    if (pause && e.key != "s")
+    if (isPause && e.key != "s")
         return;
 
     switch (e.key) {
@@ -575,8 +590,11 @@ document.onkeydown = function (e) {
             initialize();
             setmino();
             break;
-        case "s":
-            p();
+        case "p":
+            pause();
+            break;
+        case "m":
+            managemusic();
             break;
     }
     if (over)
