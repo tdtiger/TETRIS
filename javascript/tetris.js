@@ -136,6 +136,7 @@ const score_display = document.getElementById("score");
 const highscore = document.getElementById("highscore");
 let total_line = 0;
 const line_display = document.getElementById("line");
+const speed_display = document.getElementById("dropspeed");
 
 /* to manage drop speed */
 let sline = 0;
@@ -149,8 +150,7 @@ let flag_m = false;
 setInterval(function, cycle(ms))
 -> function is repeated periodically
 */
-let sp = setInterval(dropmino, DROP_SPEED);
-
+let sp;
 
 /* initialize various things */
 function initialize() {
@@ -160,6 +160,7 @@ function initialize() {
     total_line = 0;
     score_display.innerHTML = 0;
     line_display.innerHTML = 0;
+    speed_display.innerHTML = 1 / DROP_SPEED * 1000;
     DROP_SPEED = 500;
     over = false;
     flag_h = false;
@@ -178,6 +179,9 @@ function initialize() {
     con_h.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     con_h.fillStyle = "black";
     con_h.fillText("Hold", 100, 12);
+    if(sp)
+        clearInterval(sp);
+    sp = setInterval(dropmino, DROP_SPEED);
 }
 
 function drawBlock(x, y, c, target) {
@@ -209,7 +213,7 @@ function drawBlock(x, y, c, target) {
 }
 
 function drawfield() {
-    context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT)
+    context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
     for (let y = 0; y < FIELD_HEIGHT; y++) {
         for (let x = 0; x < FIELD_WIDTH; x++) {
@@ -370,6 +374,7 @@ function updateSpeed() {
     sline -= 10;
     DROP_SPEED -= 50;
     sp = setInterval(dropmino, DROP_SPEED);
+    speed_display.innerHTML = 1 / DROP_SPEED * 1000;
 }
 
 function calculateScore(sc, li) {
@@ -433,7 +438,7 @@ function dropmino() {
 
     if (checkMove(0, 1)) {
         mino_y++;
-        score+=1;
+        score += 1;
         score_display.innerHTML = score;
     } else {
         setTimeout(fixmino(), 1000);
@@ -512,7 +517,7 @@ function holdmino() {
 
 function pause(){
     if (isPause){
-        sp = setInterval(dropmino(), DROP_SPEED);
+        sp = setInterval(dropmino, DROP_SPEED);
         isPause = false;
         music.play();
     } else {
@@ -546,7 +551,7 @@ operate tetromino
 when a key is pressed, the message stored in the variable 'e'
 */
 document.onkeydown = function (e) {
-    if (isPause && e.key != "s")
+    if (isPause && e.key != "p")
         return;
 
     switch (e.key) {
