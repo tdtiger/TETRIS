@@ -18,6 +18,12 @@ https://www.youtube.com/playlist?list=PLa3BDwShqOrThKoaWauNo8EKZda4pat7Z
 ホールド => Space
 <br>
 初期化 => Enter
+<br>
+一時停止 => p
+<br>
+音楽の再生/一時停止 => m
+<br>
+※音楽はgitignoreされています．
 
 <h2>未解決課題</h2>
 ・コメントの英文の精査ができてない<br>
