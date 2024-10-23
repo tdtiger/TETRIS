@@ -126,6 +126,7 @@ let over = false;
 /* hold flag */
 let flag_h = false;
 
+/* pause flag */
 let isPause = false;
 
 /* variables for information */
@@ -158,12 +159,13 @@ function initialize() {
     line = 0;
     REN = 0;
     total_line = 0;
-    score_display.innerHTML = 0;
-    line_display.innerHTML = 0;
-    speed_display.innerHTML = 1 / DROP_SPEED * 1000;
     DROP_SPEED = 500;
     over = false;
     flag_h = false;
+    score_display.innerHTML = 0;
+    line_display.innerHTML = 0;
+    let tmp = 1 / DROP_SPEED * 1000;
+    speed_display.innerHTML = Number(tmp.toFixed(3));
     generatemino();
     HOLD_MINO_NUM = 0;
     for (let y = 0; y < FIELD_HEIGHT; y++) {
@@ -370,11 +372,14 @@ function checkLine() {
 }
 
 function updateSpeed() {
+    let tmp;
+
     clearInterval(sp);
     sline -= 10;
     DROP_SPEED -= 50;
     sp = setInterval(dropmino, DROP_SPEED);
-    speed_display.innerHTML = 1 / DROP_SPEED * 1000;
+    tmp = 1 / DROP_SPEED * 1000;
+    speed_display.innerHTML = Number(tmp.toFixed(3));
 }
 
 function calculateScore(sc, li) {
@@ -595,9 +600,11 @@ document.onkeydown = function (e) {
             initialize();
             setmino();
             break;
+        /* when the p key is pressed */
         case "p":
             pause();
             break;
+        /* when the m key is pressed */
         case "m":
             managemusic();
             break;
