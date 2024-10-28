@@ -27,7 +27,7 @@ https://www.youtube.com/playlist?list=PLa3BDwShqOrThKoaWauNo8EKZda4pat7Z
 
 <h2>未解決課題</h2>
 ・コメントの英文の精査ができてない<br>
-・ファイル分けるべきか?<br>
+・壁にめり込むようになる回転は認めない仕様にしているが，自動でずらすようにした方がいいのか?<br>
 ・初期化後，ゲームオーバー後の挙動がややおかしい<br>
 
 <h2>更新履歴</h2>
