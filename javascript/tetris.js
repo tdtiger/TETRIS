@@ -142,6 +142,7 @@ const speed_display = document.getElementById("dropspeed");
 /* to manage drop speed */
 let sline = 0;
 
+const se = document.querySelector("#se");
 const music = document.querySelector("#music");
 let flag_m = false;
 
@@ -347,6 +348,8 @@ function checkLine() {
                     field[ny][nx] = field[ny - 1][nx];
                 }
             }
+
+            se.play();
 
             /* accelerate every time 10 lines are erased */
             if (sline >= 10) {
